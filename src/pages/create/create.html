@@ -1,0 +1,87 @@
+<!--
+  Generated template for the CreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>CREAR OBJETIVO</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>META:</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>INTENCIDAD DE TIEMPO</ion-label>
+      <ion-select>
+        <ion-option>30 MINUTOS</ion-option>
+        <ion-option>60 MINUTOS</ion-option>
+        <ion-option>90 MINUTOS</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>FRECUENCIA SEMANAL</ion-label>
+      <ion-select>
+        <ion-option>1 DÍA</ion-option>
+        <ion-option>2 DÍAS</ion-option>
+        <ion-option>3 DÍAS</ion-option>
+        <ion-option>4 DÍAS</ion-option>
+        <ion-option>5 DÍAS</ion-option>
+        <ion-option>6 DÍAS</ion-option>
+        <ion-option>7 DÍA</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>DÍAS</ion-label>
+      <ion-select multiple="true">
+        <ion-option>DOMINGO</ion-option>
+        <ion-option>LUNES</ion-option>
+        <ion-option>MARTES</ion-option>
+        <ion-option>MÍERCOLES</ion-option>
+        <ion-option>JUEVES</ion-option>
+        <ion-option>VIERNES</ion-option>
+        <ion-option>SÁBADO</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>HORARIO</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat=" h mm A" doneText="Ok" cancelText="Cancelar"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>FECHA LÍMITE</ion-label>
+      <ion-datetime displayFormat="DDDD DD MMMM de YYYY" pickerFormat="MMM-DD-YYYY"
+                    max="{{maxYear}}"
+                    monthNames="Enero, Febrero, Marzo, Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
+                    monthShortNames="Ene, Feb, Mar, Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic"
+                    dayNames="Domingo, Lunes,Martes,Miercoles,Jueves,Viernes,Sábado"
+                    dayShortNames="Dom,Lun,Mar,Mie,Jue,Vie,Sab" doneText="Ok" cancelText="Cancelar"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>CONFIGURAR TONO</ion-label>
+      <ion-select>
+        <ion-option>TONO 1</ion-option>
+        <ion-option>TONO 2</ion-option>
+        <ion-option>TONO 3</ion-option>
+        <ion-option>TONO 4</ion-option>
+        <ion-option>TONO 5</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>RECOMPENSA:</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-row>
+    <ion-col>
+      <button ion-button full color="secundary">ACEPTAR</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

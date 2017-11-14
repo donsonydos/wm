@@ -1,0 +1,31 @@
+<ion-header>
+</ion-header>
+
+<ion-content padding class="content-home">
+  <ion-row>
+    <ion-col>
+      <div class="advance-general">{{info.generalProgress}}<SUB>%</SUB></div>
+      <div class="advance-general-label">AVANCE GENERAL DE METAS</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="blank-space"></div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col (click)="gotoPage('create')">CREAR</ion-col>
+    <ion-col (click)="gotoPage('advance')" class="borders">AVANZAR</ion-col>
+    <ion-col (click)="gotoPage('accomplishment')">LOGROS</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="blank-space"></div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>logo</ion-col>
+  </ion-row>
+
+</ion-content>
+<ion-footer>publicidad inplace</ion-footer>
