@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home';
 import {CreatePage} from "../pages/create/create";
 import {AdvancePage} from "../pages/advance/advance";
 import {AccomplishmentPage} from "../pages/accomplishment/accomplishment";
+import {PublicityComponent} from "../components/publicity/publicity";
+import { GeneralFunctionsProvider } from '../providers/general-functions/general-functions';
+import {AboutUsPage} from "../pages/about-us/about-us";
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import {AccomplishmentPage} from "../pages/accomplishment/accomplishment";
     HomePage,
     CreatePage,
     AdvancePage,
-    AccomplishmentPage
+    AccomplishmentPage,
+    AboutUsPage,
+    PublicityComponent
   ],
   imports: [
     BrowserModule,
@@ -28,12 +33,15 @@ import {AccomplishmentPage} from "../pages/accomplishment/accomplishment";
     HomePage,
     CreatePage,
     AdvancePage,
-    AccomplishmentPage
+    AccomplishmentPage,
+    AboutUsPage,
+    PublicityComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GeneralFunctionsProvider
   ]
 })
 export class AppModule {}

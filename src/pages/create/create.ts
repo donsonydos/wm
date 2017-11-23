@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {GeneralFunctionsProvider} from "../../providers/general-functions/general-functions";
 
 /**
  * Generated class for the CreatePage page.
@@ -17,7 +18,7 @@ export class CreatePage {
 
   maxYear = 2025;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public generalFunctions: GeneralFunctionsProvider) {
   }
 
   ionViewDidLoad() {

@@ -8,6 +8,10 @@
 
   <ion-navbar color="primary">
     <ion-title>AVANZAR OBJETIVO</ion-title>
+    <!-- botones android showWhen="android" -->
+    <div showWhen="android" class="ico-logo-header icon-home" (click)="generalFunctions.gotoHome(navCtrl)"></div>
+    <!-- botones ios -->
+    <div showWhen="ios" class="ico-logo-header icon-home-ios" (click)="generalFunctions.gotoHome(navCtrl)"></div>
   </ion-navbar>
 
 </ion-header>
@@ -20,8 +24,8 @@
         <ion-col text-uppercase>{{goal.title}}</ion-col>
       </ion-row>
       <ion-row class="options">
-        <ion-col>AVANZAR HOY</ion-col>
-        <ion-col col-3 class="borders">EDITAR</ion-col>
+        <ion-col>AVANZAR</ion-col>
+        <ion-col class="borders">EDITAR</ion-col>
         <ion-col>ELIMINAR</ion-col>
       </ion-row>
     </ion-col>
@@ -29,3 +33,7 @@
   </ion-row>
 
 </ion-content>
+
+<ion-footer>
+  <publicity></publicity>
+</ion-footer>

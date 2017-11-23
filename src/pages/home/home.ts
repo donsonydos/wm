@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {CreatePage} from "../create/create";
 import {AdvancePage} from "../advance/advance";
 import {AccomplishmentPage} from "../accomplishment/accomplishment";
+import {AboutUsPage} from "../about-us/about-us";
 
 @Component({
   selector: 'page-home',
@@ -27,6 +28,9 @@ export class HomePage {
     }
     if (page === 'accomplishment') {
       this.navCtrl.push(AccomplishmentPage);
+    }
+    if (page === 'aboutUs') {
+      this.navCtrl.push(AboutUsPage);
     }
   }
 

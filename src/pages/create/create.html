@@ -8,6 +8,10 @@
 
   <ion-navbar color="primary">
     <ion-title>CREAR OBJETIVO</ion-title>
+    <!-- botones android showWhen="android" -->
+    <div showWhen="android" class="ico-logo-header icon-home" (click)="generalFunctions.gotoHome(navCtrl)"></div>
+    <!-- botones ios -->
+    <div showWhen="ios" class="ico-logo-header icon-home-ios" (click)="generalFunctions.gotoHome(navCtrl)"></div>
   </ion-navbar>
 
 </ion-header>
@@ -85,3 +89,7 @@
     </ion-col>
   </ion-row>
 </ion-content>
+
+<ion-footer>
+  <publicity></publicity>
+</ion-footer>

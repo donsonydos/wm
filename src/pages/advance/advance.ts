@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {GeneralFunctionsProvider} from "../../providers/general-functions/general-functions";
 
 /**
  * Generated class for the AdvancePage page.
@@ -30,7 +31,7 @@ export class AdvancePage {
     },
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public generalFunctions: GeneralFunctionsProvider) {
   }
 
   ionViewDidLoad() {
