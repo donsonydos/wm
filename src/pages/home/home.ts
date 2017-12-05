@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, NavParams, Platform} from 'ionic-angular';
 import {CreatePage} from "../create/create";
 import {AdvancePage} from "../advance/advance";
 import {AccomplishmentPage} from "../accomplishment/accomplishment";
 import {AboutUsPage} from "../about-us/about-us";
+import {DataBaseProvider} from "../../providers/data-base/data-base";
+
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'page-home',
@@ -12,11 +15,23 @@ import {AboutUsPage} from "../about-us/about-us";
 export class HomePage {
 
   info: any = {
-    generalProgress: 83
+    generalProgress: 0
   };
+  decimals = new DecimalPipe("");
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private databaseProvider: DataBaseProvider, private plt: Platform) {
+  }
 
-  constructor(public navCtrl: NavController) {
-
+  ionViewDidEnter() {
+    this.plt.ready().then(() => {
+      this.databaseProvider.getDatabaseState().subscribe(rdy => {
+        if (rdy) {
+          this.databaseProvider.getGeneralProgress().then(result=>{
+            this.info.generalProgress = result.progress;
+          });
+        }
+      });
+    });
   }
 
   gotoPage(page) {

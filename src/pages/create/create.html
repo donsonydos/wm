@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>CREAR OBJETIVO</ion-title>
+    <ion-title>{{pageName}}</ion-title>
     <!-- botones android showWhen="android" -->
     <div showWhen="android" class="ico-logo-header icon-home" (click)="generalFunctions.gotoHome(navCtrl)"></div>
     <!-- botones ios -->
@@ -18,78 +18,68 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>META:</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>INTENCIDAD DE TIEMPO</ion-label>
-      <ion-select>
-        <ion-option>30 MINUTOS</ion-option>
-        <ion-option>60 MINUTOS</ion-option>
-        <ion-option>90 MINUTOS</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>FRECUENCIA SEMANAL</ion-label>
-      <ion-select>
-        <ion-option>1 DÍA</ion-option>
-        <ion-option>2 DÍAS</ion-option>
-        <ion-option>3 DÍAS</ion-option>
-        <ion-option>4 DÍAS</ion-option>
-        <ion-option>5 DÍAS</ion-option>
-        <ion-option>6 DÍAS</ion-option>
-        <ion-option>7 DÍA</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>DÍAS</ion-label>
-      <ion-select multiple="true">
-        <ion-option>DOMINGO</ion-option>
-        <ion-option>LUNES</ion-option>
-        <ion-option>MARTES</ion-option>
-        <ion-option>MÍERCOLES</ion-option>
-        <ion-option>JUEVES</ion-option>
-        <ion-option>VIERNES</ion-option>
-        <ion-option>SÁBADO</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>HORARIO</ion-label>
-      <ion-datetime displayFormat="h:mm A" pickerFormat=" h mm A" doneText="Ok" cancelText="Cancelar"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>FECHA LÍMITE</ion-label>
-      <ion-datetime displayFormat="DDDD DD MMMM de YYYY" pickerFormat="MMM-DD-YYYY"
-                    max="{{maxYear}}"
-                    monthNames="Enero, Febrero, Marzo, Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
-                    monthShortNames="Ene, Feb, Mar, Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic"
-                    dayNames="Domingo, Lunes,Martes,Miercoles,Jueves,Viernes,Sábado"
-                    dayShortNames="Dom,Lun,Mar,Mie,Jue,Vie,Sab" doneText="Ok" cancelText="Cancelar"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>CONFIGURAR TONO</ion-label>
-      <ion-select>
-        <ion-option>TONO 1</ion-option>
-        <ion-option>TONO 2</ion-option>
-        <ion-option>TONO 3</ion-option>
-        <ion-option>TONO 4</ion-option>
-        <ion-option>TONO 5</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>RECOMPENSA:</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-row>
-    <ion-col>
-      <button ion-button full color="secundary">ACEPTAR</button>
-    </ion-col>
-  </ion-row>
-</ion-content>
+  <form (ngSubmit)="getDatesSchedule()" #newTask="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>META:</ion-label>
+        <ion-input [(ngModel)]="task.task_name" name="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>INTENCIDAD DE TIEMPO</ion-label>
+        <ion-select [(ngModel)]="task.task_intensity" name="intensity" required>
+          <ion-option [value]="30">30 MINUTOS</ion-option>
+          <ion-option [value]="60">60 MINUTOS</ion-option>
+          <ion-option [value]="90">90 MINUTOS</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>DÍAS</ion-label>
+        <ion-select [(ngModel)]="task.task_days" name="days" multiple="true" required>
+          <ion-option [value]="0">DOMINGO</ion-option>
+          <ion-option [value]="1">LUNES</ion-option>
+          <ion-option [value]="2">MARTES</ion-option>
+          <ion-option [value]="3">MÍERCOLES</ion-option>
+          <ion-option [value]="4">JUEVES</ion-option>
+          <ion-option [value]="5">VIERNES</ion-option>
+          <ion-option [value]="6">SÁBADO</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>HORARIO</ion-label>
+        <ion-datetime [(ngModel)]="task.task_schedule" name="schedule" required displayFormat="h:mm A"
+                      pickerFormat=" h mm A" doneText="Ok" cancelText="Cancelar"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>FECHA LÍMITE</ion-label>
+        <ion-datetime [(ngModel)]="task.task_limit_date" name="limit" required displayFormat="DDD DD MMM de YYYY"
+                      pickerFormat="MMM-DD-YYYY"
+                      min="{{minYear}}"
+                      max="{{maxYear}}"
+                      monthNames="Enero, Febrero, Marzo, Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
+                      monthShortNames="Ene, Feb, Mar, Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic"
+                      dayNames="Domingo, Lunes,Martes,Miercoles,Jueves,Viernes,Sábado"
+                      dayShortNames="Dom,Lun,Mar,Mie,Jue,Vie,Sab" doneText="Ok" cancelText="Cancelar"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>CONFIGURAR TONO</ion-label>
+        <ion-select [ngModel]="task.task_tone" name="tone" required>
+          <ion-option value="tono1">TONO 1</ion-option>
+          <ion-option value="tono2">TONO 2</ion-option>
+          <ion-option value="tono3">TONO 3</ion-option>
+          <ion-option value="tono4">TONO 4</ion-option>
+          <ion-option value="tono5">TONO 5</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>RECOMPENSA:</ion-label>
+        <ion-input [(ngModel)]="task.task_reward" name="reward" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row no-padding>
+      <ion-col no-padding>
+        <button ion-button full color="secundary" type="submit" [disabled]="!newTask.form.valid">ACEPTAR</button>
+      </ion-col>
+    </ion-row>
+  </form>
 
-<ion-footer>
-  <publicity></publicity>
-</ion-footer>
+</ion-content>

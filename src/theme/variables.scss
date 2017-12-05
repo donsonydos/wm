@@ -115,7 +115,11 @@ ion-content {
   font-family: BungeeInline !important;
   text-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
 }
-
+.list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+  border-bottom-color: transparent!important;
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+}
 .borders {
   border-left: 1pt rgba(255, 255, 255, 0.5) solid;
   border-right: 1pt rgba(255, 255, 255, 0.5) solid;
@@ -189,6 +193,18 @@ ion-content {
   position: absolute;
   background-repeat: no-repeat;
 }
+.content-advance-goal-gif {
+  height: 200pt;
+}
+.advance-goal-gif {
+  background-image: url(../assets/imgs/advance-goal.gif);
+  width: 100%;
+  height: 200pt;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 230pt;
+  background-position: center;
+}
 .content-icon{
   height: 90pt;
 }
@@ -233,4 +249,57 @@ ion-content {
 }
 .options .col {
   text-align: center;
+}
+.item-md {
+  color: #fff!important;
+}
+.button-md {
+  background-color: rgba(255,255,255,0.3)!important;
+  border: solid 2px #fff;
+  box-shadow: none;
+  height: 5.6rem!important;
+}
+.button-full-md {
+  border-left: 1.5pt solid!important;
+  border-right: 1.5pt solid!important;
+}
+.alpha {
+  opacity: 0.7!important;
+}
+.logo-facebook {
+  background: url(../assets/imgs/facebook.svg);
+  background-size: cover;
+}
+.logo-instagram {
+  background: url(../assets/imgs/instagram.svg);
+  background-size: cover;
+}
+.logo-cup{
+  background: url(../assets/imgs/cup.svg);
+  background-size: cover;
+  height: 40pt;
+  width: 45pt;
+  border-radius: inherit;
+}
+.text-center, .text-center p {
+  text-align: center;
+}
+.text-left, .text-left p {
+  text-align: left;
+}
+ion-row {
+  text-align: center;
+  ion-icon {
+    border-radius: 50%;
+    font-size: 28pt;
+    padding: 12pt;
+    height: 40pt;
+    width: 40pt;
+    margin: 5pt;
+  }
+}
+.separator {
+  display: block;
+  width: 100%;
+  position: relative;
 }

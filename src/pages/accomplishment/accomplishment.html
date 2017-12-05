@@ -18,26 +18,49 @@
 
 
 <ion-content padding>
-  <ion-row *ngFor="let goal of goalList" class="goalsList">
-    <ion-col col-7>
-      <ion-row>
-        <ion-col text-uppercase>{{goal.title}}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <p class="options" text-uppercase>invertiste {{goal.timeGoal}} horas para alcanzar esta meta</p>
-          <p text-uppercase>eres un ganador</p>
-        </ion-col>
-      </ion-row>
-      <ion-row class="options">
-        <ion-col col-5>REINICIAR</ion-col>
-        <ion-col class="back-border">ELIMINAR</ion-col>
-      </ion-row>
-    </ion-col>
-    <ion-col class="advancePercentage">100<sub>%</sub></ion-col>
-  </ion-row>
+  <div *ngIf="taskList?.length > 0; then contentList else contentNoList"></div>
+  <ng-template #contentList>
+    <ion-row *ngFor="let goal of taskList" class="goalsList">
+      <ion-col col-7>
+        <ion-row>
+          <ion-col class="text-left" text-uppercase>{{goal.task_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="options" text-uppercase>invertiste {{ (goal.task_repetitions * goal.task_intensity)}} minutos para
+              alcanzar esta meta</p>
+            <p text-uppercase>eres un ganador</p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="options">
+          <ion-col col-5>REINICIAR</ion-col>
+          <ion-col class="back-border" (click)="confirmDeleteTask(goal.task_id)">ELIMINAR</ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="advancePercentage">
+        <div class="separator">
+          <ion-icon class="logo-cup"></ion-icon>
+        </div>
+        <div class="separator">
+            100<sub>%</sub>
+        </div>
+        <div class="separator">
+          <ion-icon class="logo-facebook"></ion-icon>
+          <ion-icon class="logo-instagram"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ng-template>
+  <ng-template #contentNoList>
+    <ion-row>
+      <ion-col>
+        No tienes objetivos creados
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full (click)="goAdvance()">ir a avanzar</button>
+      </ion-col>
+    </ion-row>
+  </ng-template>
 </ion-content>
-
-<ion-footer>
-  <publicity></publicity>
-</ion-footer>

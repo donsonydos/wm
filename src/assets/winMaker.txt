@@ -1,0 +1,16 @@
+CREATE TABLE "task" (
+	`task_id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`task_name`	TEXT,
+	`task_intensity`	INTEGER,
+	`task_frequency`	INTEGER,
+	`task_days`	TEXT,
+	`task_schedule`	TEXT,
+	`task_tone`	TEXT,
+	`task_reward`	TEXT,
+	`task_limit_date`	TEXT,
+	`task_progress`	NUMERIC DEFAULT 0.0,
+	`task_status`	INTEGER DEFAULT 1,
+	`task_repetitions`	INTEGER DEFAULT 0,
+	`task_repetitions_done`	INTEGER DEFAULT 0,
+	`task_notification_id`	INTEGER DEFAULT 0
+);

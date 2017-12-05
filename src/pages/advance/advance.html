@@ -16,24 +16,34 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <ion-row *ngFor="let goal of goalList" class="goalsList">
-    <ion-col col-9>
-      <ion-row>
-        <ion-col text-uppercase>{{goal.title}}</ion-col>
-      </ion-row>
-      <ion-row class="options">
-        <ion-col>AVANZAR</ion-col>
-        <ion-col class="borders">EDITAR</ion-col>
-        <ion-col>ELIMINAR</ion-col>
-      </ion-row>
-    </ion-col>
-    <ion-col col-3 class="advancePercentage">{{goal.advancePercentage}}<sub>%</sub></ion-col>
-  </ion-row>
+  <div *ngIf="taskList?.length > 0; then contentList else contentNoList"></div>
+  <ng-template #contentList>
+    <ion-row *ngFor="let task of taskList" class="goalsList">
+      <ion-col col-9>
+        <ion-row>
+          <ion-col text-uppercase>{{task.task_name}}</ion-col>
+        </ion-row>
+        <ion-row class="options">
+          <ion-col (click)="advanceTask(task)">AVANZAR</ion-col>
+          <ion-col (click)="editTask(task)" class="borders">EDITAR</ion-col>
+          <ion-col (click)="confirmDeleteTask(task.task_id)">ELIMINAR</ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3 class="advancePercentage">{{(task.task_progress * 100) | number:'2.0-0'}}<sub>%</sub></ion-col>
+    </ion-row>
+  </ng-template>
+  <ng-template #contentNoList>
+    <ion-row>
+      <ion-col>
+        No tienes objetivos creados
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full (click)="goCreate()">crear</button>
+      </ion-col>
+    </ion-row>
+  </ng-template>
 
 </ion-content>
-
-<ion-footer>
-  <publicity></publicity>
-</ion-footer>

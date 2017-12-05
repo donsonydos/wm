@@ -4,8 +4,8 @@
 <ion-content padding class="content-home">
   <ion-row>
     <ion-col>
-      <div class="advance-general">{{info.generalProgress}}<SUB>%</SUB></div>
-      <div class="advance-general-label">AVANCE GENERAL DE METAS</div>
+      <div class="advance-general">{{(info.generalProgress * 100) | number:'2.0-0'}}<SUB>%</SUB></div>
+      <div class="alpha">AVANCE GENERAL DE METAS</div>
     </ion-col>
   </ion-row>
   <ion-row>
@@ -28,6 +28,3 @@
   </ion-row>
 
 </ion-content>
-<ion-footer>
-  <publicity></publicity>
-</ion-footer>
