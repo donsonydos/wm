@@ -15,7 +15,7 @@ import {AboutUsPage} from "../pages/about-us/about-us";
 import {AdvanceGoalPage} from "../pages/advance-goal/advance-goal";
 import {AdMobFree} from "@ionic-native/admob-free";
 import { DataBaseProvider } from '../providers/data-base/data-base';
-import {HttpClient, HttpHandler} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {SQLitePorter} from "@ionic-native/sqlite-porter";
 import {SQLite} from "@ionic-native/sqlite";
 import {IonicStorageModule} from "@ionic/storage";
@@ -24,6 +24,7 @@ import {LocalNotifications} from "@ionic-native/local-notifications";
 import {Media} from "@ionic-native/media";
 import {GoalAccomplishPage} from "../pages/goal-accomplish/goal-accomplish";
 import { SentencesProvider } from '../providers/sentences/sentences';
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SentencesProvider } from '../providers/sentences/sentences';
   imports: [
     BrowserModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -58,8 +60,6 @@ import { SentencesProvider } from '../providers/sentences/sentences';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpClient,
-    HttpHandler,
     SQLite,
     SQLitePorter,
     GeneralFunctionsProvider,
@@ -68,7 +68,8 @@ import { SentencesProvider } from '../providers/sentences/sentences';
     DataBaseProvider,
     LocalNotifications,
     Media,
-    SentencesProvider
+    SentencesProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

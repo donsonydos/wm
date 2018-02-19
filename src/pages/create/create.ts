@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import { GeneralFunctionsProvider } from "../../providers/general-functions/general-functions";
-import { DataBaseProvider } from '../../providers/data-base/data-base';
-import { AdvancePage } from "../advance/advance";
+import {GeneralFunctionsProvider} from "../../providers/general-functions/general-functions";
+import {DataBaseProvider} from '../../providers/data-base/data-base';
+import {AdvancePage} from "../advance/advance";
+import {Media, MediaObject} from "@ionic-native/media";
 
 /**
  * Generated class for the CreatePage page.
@@ -24,11 +25,13 @@ export class CreatePage {
 
   datesSchedule = [];
 
+  mediaFile: MediaObject;
+
   task = {
     task_name: "",
     task_intensity: "",
     task_frequency: "",
-    task_days:<any> "",
+    task_days: <any> "",
     task_schedule: "",
     task_tone: "",
     task_reward: "",
@@ -36,58 +39,55 @@ export class CreatePage {
     task_repetitions: 0,
     task_notification_id: 0
   };
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public generalFunctions: GeneralFunctionsProvider,
-              public databaseProvider: DataBaseProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public generalFunctions: GeneralFunctionsProvider, public databaseProvider: DataBaseProvider,
+              private media: Media) {
   }
 
   ionViewDidEnter() {
-    console.log('tengo estos params', this.navParams);
+    // console.log('tengo estos params', this.navParams);
     if (this.navParams.data.task_id) {
       console.log('estoy editando');
       this.pageName = "EDITAR OBJETIVO";
       this.isEdit = true;
       this.task = this.navParams.data;
-      this.task.task_days = this.task.task_days.split(",",7);
+      this.task.task_days = this.task.task_days.split(",", 7);
+      this.generalFunctions.getNotifications();
     } else {
       this.pageName = "CREAR OBJETIVO";
       this.isEdit = false;
-      this.task.task_name= "";
-      this.task.task_intensity= "";
-      this.task.task_frequency= "";
-      this.task.task_days= "";
-      this.task.task_schedule= "";
-      this.task.task_tone= "";
-      this.task.task_reward= "";
-      this.task.task_limit_date= "";
+      this.task.task_name = "";
+      this.task.task_intensity = "";
+      this.task.task_frequency = "";
+      this.task.task_days = "";
+      this.task.task_schedule = "";
+      this.task.task_tone = "";
+      this.task.task_reward = "";
+      this.task.task_limit_date = "";
       this.task.task_repetitions = 0;
       this.task.task_notification_id = new Date().getTime();
     }
   }
-
   /**
    * retorna las fechas correspondientes para realizar la notificación.
    */
   getDatesSchedule() {
     //genera la fecha limite teniendo en cuenta la hora de la tarea.
     let end = new Date(this.task.task_limit_date + 'T' + this.task.task_schedule + ':00-0500');
-
     // se obtiene la fecha actual para iniciar a buscar las fechas en las que se asignarán las notificaciones
-    let currentComplete:any = new Date();
-    let d:any = currentComplete.getDate();
-    let m:any = currentComplete.getMonth()+1; //January is 0!
+    let currentComplete: any = new Date();
+    let d: any = currentComplete.getDate();
+    let m: any = currentComplete.getMonth() + 1; //January is 0!
     let yyyy = currentComplete.getFullYear();
     let dd = '' + d;
     let mm = '' + m;
 
-    if(d<10) {
-      dd = '0'+d;
+    if (d < 10) {
+      dd = '0' + d;
     }
-
-    if(m<10) {
-      mm = '0'+m;
+    if (m < 10) {
+      mm = '0' + m;
     }
-
     // se da formato a la fecha actual para inciar la busqueda de fechas
     currentComplete = yyyy + '-' + mm + '-' + dd + 'T' + this.task.task_schedule + ':00-0500';
 
@@ -112,7 +112,6 @@ export class CreatePage {
     //invoca el guardado de las notificaciones.
     this.saveNotifications(0);
   }
-
   /**
    * invoca la generacion de notficaciones locales o envía el guardar de la tarea en base de datos
    * @param dateScheduleIntex
@@ -120,7 +119,7 @@ export class CreatePage {
   saveNotifications(dateScheduleIntex) {
     if (this.datesSchedule.length === 0) {
       // si no se generan fechas para la trea programada no se guarda
-      this.generalFunctions.showAlert('Atención','La fecha límite debe ser mayor para asignar recordatorios');
+      this.generalFunctions.showAlert('Atención', 'La fecha límite debe ser mayor para asignar recordatorios');
       return true;
     }
     if (this.datesSchedule.hasOwnProperty(dateScheduleIntex)) {
@@ -128,7 +127,7 @@ export class CreatePage {
       // cambiar el id por numero de fecha actual.
       let notificationId = this.task.task_notification_id + dateScheduleIntex;
       this.generalFunctions.setScheduleLocalNotification(notificationId, 'Alcanza tu objetivo',
-        this.task.task_name, this.datesSchedule[dateScheduleIntex]);
+        this.task.task_name, this.datesSchedule[dateScheduleIntex], this.task.task_tone);
 
       // se auto invoca la creación de la sigiente notificacion
       this.saveNotifications(dateScheduleIntex + 1);
@@ -137,7 +136,25 @@ export class CreatePage {
       this.saveTask();
     }
   }
-
+  /**
+   * reproduce el sonido del tono seleccionado
+   * @param tone
+   */
+  playTone(tone) {
+    // direccion local de archivos multimeida
+    this.stopTone();
+    this.mediaFile = this.media.create(this.generalFunctions.localUri + "www/" + this.generalFunctions.arrayTones[tone]);
+    this.mediaFile.play();
+  }
+  /**
+   * para el sonido del tono
+   */
+  stopTone() {
+    console.log('parar tono', this.task);
+    if (this.mediaFile) {
+      this.mediaFile.stop();
+    }
+  }
   /**
    * guarda la tarea en base de datos.
    */

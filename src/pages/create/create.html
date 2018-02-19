@@ -62,12 +62,13 @@
       </ion-item>
       <ion-item>
         <ion-label>CONFIGURAR TONO</ion-label>
-        <ion-select [ngModel]="task.task_tone" name="tone" required>
-          <ion-option value="tono1">TONO 1</ion-option>
-          <ion-option value="tono2">TONO 2</ion-option>
-          <ion-option value="tono3">TONO 3</ion-option>
-          <ion-option value="tono4">TONO 4</ion-option>
-          <ion-option value="tono5">TONO 5</ion-option>
+        <ion-select [(ngModel)]="task.task_tone" name="tone" (ionCancel)="stopTone()" (ionChange)="stopTone()"
+                    cancelText="Cancelar" required>
+          <ion-option [value]="0" (ionSelect)="playTone(0)">TONO 1</ion-option>
+          <ion-option [value]="1" (ionSelect)="playTone(1)">TONO 2</ion-option>
+          <ion-option [value]="2" (ionSelect)="playTone(2)">TONO 3</ion-option>
+          <ion-option [value]="3" (ionSelect)="playTone(3)">TONO 4</ion-option>
+          <ion-option [value]="4" (ionSelect)="playTone(4)">TONO 5</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
