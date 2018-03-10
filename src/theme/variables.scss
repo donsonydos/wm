@@ -274,6 +274,14 @@ ion-content {
   background: url(../assets/imgs/instagram.svg);
   background-size: cover;
 }
+.logo-whatsapp {
+  background: url(../assets/imgs/whatsapp-logo.svg);
+  background-size: cover;
+}
+.logo-share {
+  background: url(../assets/imgs/share.svg);
+  background-size: cover;
+}
 .logo-cup{
   background: url(../assets/imgs/cup.svg);
   background-size: cover;
@@ -281,6 +289,7 @@ ion-content {
   width: 45pt;
   border-radius: inherit;
 }
+
 .text-center, .text-center p {
   text-align: center;
 }
@@ -302,4 +311,93 @@ ion-row {
   display: block;
   width: 100%;
   position: relative;
+}
+.calendar {
+  border: solid 2px #ffffff;
+  margin-bottom: 8px;
+  .div-title {
+    border-bottom: solid 2px #ffffff;
+    height: 50px;
+    padding: 12px 8px;
+    font-size: 16px;
+  }
+  [col-1] {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 8.33333%;
+    -ms-flex: 0 0 8.33333%;
+    flex: 0 0 14.285714285714286%;
+    width: 14.285714285714286%;
+    max-width: 14.285714285714286%;
+  }
+  .col {
+    text-align: center;
+    padding: 5px;
+  }
+  .last-month, .next-month {
+    color: #999999;
+    font-size: 90%;
+  }
+  .currentDate, .otherDate {
+    padding: 5px;
+  }
+  .currentDate {
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    border-radius: 30px;
+  }
+  .calendar-header {
+    color: #FFFFFF;
+    .calendar-month {
+      height: 33px;
+    }
+    ion-row ion-icon {
+      border-radius: 50%;
+      font-size: 26pt;
+      padding: 0pt;
+      height: 28pt;
+      width: 40pt;
+      margin: 0pt;
+    }
+  }
+  .event-bullet {
+    margin: 2px auto;
+    height: 5px;
+    width: 5px;
+    background-color: green;
+    border-radius: 30px;
+  }
+  .selected-date {
+    width: 20px;
+    height: 2px;
+    background-color: blue;
+  }
+  .unselected-date {
+    border: none;
+  }
+  .calendar-body {
+    .grid {
+      padding: 0;
+    }
+    .col:last-child {
+      border-right: none;
+    }
+    .calendar-weekday, .calendar-date {
+      text-align: center;
+      margin: 0;
+    }
+    .calendar-weekday {
+      font-weight: bold;
+      // background-color: #26ab56;
+    }
+    .calendar-date {
+      // border-top: solid 1px #1a732d;
+      // border-bottom: solid 1px #1a732d;
+    }
+    ion-footer {
+      .button.button-md.button-default.button-default-md.button-full.button-full-md.button-md-primary {
+        background-color: #488aff !important;
+      }
+    }
+  }
 }

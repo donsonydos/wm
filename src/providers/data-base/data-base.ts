@@ -74,7 +74,7 @@ export class DataBaseProvider {
    * @returns {Promise<TResult>|Promise<TResult|any>|Promise<TResult2|TResult1>|Promise<any>}
    */
   newTask(insertData) {
-    let sql = "INSERT INTO task(task_id,task_name,task_intensity,task_frequency,task_days,task_schedule,task_tone,task_reward,task_limit_date,task_repetitions,task_notification_id) VALUES (NULL,?,?,?,?,?,?,?,?,?,?)";
+    let sql = "INSERT INTO task(task_id,task_name,task_intensity,task_frequency,task_days,task_schedule,task_tone,task_reward,task_limit_date,task_repetitions) VALUES (NULL,?,?,?,?,?,?,?,?,?)";
     let data = [
       insertData.task_name,
       insertData.task_intensity,
@@ -85,9 +85,31 @@ export class DataBaseProvider {
       insertData.task_reward,
       insertData.task_limit_date,
       insertData.task_repetitions,
-      insertData.task_notification_id
     ];
     return this.executeQuery(sql,data);
+  }
+
+  editTask(editData) {
+    let sql = "UPDATE task SET task_name = ?,task_intensity = ?,task_frequency = ?,task_days = ?,task_schedule = ?,task_tone = ?,task_reward = ?,task_limit_date = ?,task_repetitions = ? WHERE task_id = ?";
+    let data = [
+      editData.task_name,
+      editData.task_intensity,
+      editData.task_frequency,
+      editData.task_days,
+      editData.task_schedule,
+      editData.task_tone,
+      editData.task_reward,
+      editData.task_limit_date,
+      editData.task_repetitions,
+      editData.task_id
+    ];
+    return this.executeQuery(sql,data);
+  }
+
+  saveSchedule(taskId) {
+    let sql = 'INSERT INTO schedule (sche_id, task_id) VALUES (NULL, ?)';
+    let data = [taskId];
+    return this.executeQuery(sql, data);
   }
 
   taskList(typeList) {
@@ -114,7 +136,25 @@ export class DataBaseProvider {
             task_limit_date:        data.rows.item(i).task_limit_date,
             task_repetitions:       data.rows.item(i).task_repetitions,
             task_repetitions_done:  data.rows.item(i).task_repetitions_done,
-            task_notification_id:   data.rows.item(i).task_notification_id
+          });
+        }
+      }
+      return list;
+    }, err => {
+      console.log('Error: ', err);
+      return [];
+    });
+  }
+
+  taskSchedules(taskId) {
+    let sql = "SELECT sche_id FROM schedule WHERE task_id = ?";
+    let dataQuery = [taskId];
+    return this.database.executeSql(sql, dataQuery).then((data) => {
+      let list = [];
+      if (data.rows.length > 0) {
+        for (var i = 0; i < data.rows.length; i++) {
+          list.push({
+            sche_id: data.rows.item(i).sche_id
           });
         }
       }
@@ -127,11 +167,11 @@ export class DataBaseProvider {
 
   updateTask(task) {
     let sql = 'UPDATE task SET task_name=?, task_intensity=?, task_frequency=?, task_days=?, task_schedule=?,' +
-      'task_tone=?, task_reward=?, task_progress=?, task_limit_date=?, task_repetitions=?, task_repetitions_done=?, ' +
-      'task_notification_id=? WHERE task_id=?';
+      'task_tone=?, task_reward=?, task_progress=?, task_limit_date=?, task_repetitions=?, task_repetitions_done=? ' +
+      'WHERE task_id=?';
     let data = [task.task_name,task.task_intensity,task.task_frequency,task.task_days,task.task_schedule,
       task.task_tone,task.task_reward,task.task_progress,task.task_limit_date,task.task_repetitions,
-      task.task_repetitions_done, task.task_notification_id, task.task_id];
+      task.task_repetitions_done, task.task_id];
     return this.executeQuery(sql,data);
   }
 

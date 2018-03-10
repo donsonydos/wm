@@ -25,7 +25,7 @@
         <ion-input [(ngModel)]="task.task_name" name="name" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>INTENCIDAD DE TIEMPO</ion-label>
+        <ion-label>INTENSIDAD DE TIEMPO</ion-label>
         <ion-select [(ngModel)]="task.task_intensity" name="intensity" required>
           <ion-option [value]="30">30 MINUTOS</ion-option>
           <ion-option [value]="60">60 MINUTOS</ion-option>
@@ -49,7 +49,7 @@
         <ion-datetime [(ngModel)]="task.task_schedule" name="schedule" required displayFormat="h:mm A"
                       pickerFormat=" h mm A" doneText="Ok" cancelText="Cancelar"></ion-datetime>
       </ion-item>
-      <ion-item>
+      <!--<ion-item>
         <ion-label>FECHA LÍMITE</ion-label>
         <ion-datetime [(ngModel)]="task.task_limit_date" name="limit" required displayFormat="DDD DD MMM de YYYY"
                       pickerFormat="MMM-DD-YYYY"
@@ -59,7 +59,8 @@
                       monthShortNames="Ene, Feb, Mar, Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic"
                       dayNames="Domingo, Lunes,Martes,Miercoles,Jueves,Viernes,Sábado"
                       dayShortNames="Dom,Lun,Mar,Mie,Jue,Vie,Sab" doneText="Ok" cancelText="Cancelar"></ion-datetime>
-      </ion-item>
+      </ion-item>-->
+      <calendar></calendar>
       <ion-item>
         <ion-label>CONFIGURAR TONO</ion-label>
         <ion-select [(ngModel)]="task.task_tone" name="tone" (ionCancel)="stopTone()" (ionChange)="stopTone()"
@@ -82,5 +83,4 @@
       </ion-col>
     </ion-row>
   </form>
-
 </ion-content>

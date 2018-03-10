@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {GeneralFunctionsProvider} from "../../providers/general-functions/general-functions";
 import {DataBaseProvider} from '../../providers/data-base/data-base';
 import {AdvancePage} from "../advance/advance";
 import {Media, MediaObject} from "@ionic-native/media";
+import {CalendarComponent} from "../../components/calendar/calendar";
 
 /**
  * Generated class for the CreatePage page.
@@ -37,21 +38,25 @@ export class CreatePage {
     task_reward: "",
     task_limit_date: "",
     task_repetitions: 0,
-    task_notification_id: 0
   };
+
+  schedules: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public generalFunctions: GeneralFunctionsProvider, public databaseProvider: DataBaseProvider,
-              private media: Media) {
+              private media: Media, private modalCtrl: ModalController) {
   }
 
   ionViewDidEnter() {
     // console.log('tengo estos params', this.navParams);
     if (this.navParams.data.task_id) {
-      console.log('estoy editando');
       this.pageName = "EDITAR OBJETIVO";
       this.isEdit = true;
       this.task = this.navParams.data;
       this.task.task_days = this.task.task_days.split(",", 7);
+      this.databaseProvider.taskSchedules(this.navParams.data.task_id).then(dataSchedules => {
+        this.schedules = dataSchedules;
+      });
       this.generalFunctions.getNotifications();
     } else {
       this.pageName = "CREAR OBJETIVO";
@@ -65,15 +70,16 @@ export class CreatePage {
       this.task.task_reward = "";
       this.task.task_limit_date = "";
       this.task.task_repetitions = 0;
-      this.task.task_notification_id = new Date().getTime();
     }
   }
+
   /**
    * retorna las fechas correspondientes para realizar la notificación.
    */
   getDatesSchedule() {
     //genera la fecha limite teniendo en cuenta la hora de la tarea.
-    let end = new Date(this.task.task_limit_date + 'T' + this.task.task_schedule + ':00-0500');
+    console.log('quiere guarar con la fecha', this.generalFunctions.task_limit_date)
+    let end = new Date(this.generalFunctions.task_limit_date + 'T' + this.task.task_schedule + ':00-0500');
     // se obtiene la fecha actual para iniciar a buscar las fechas en las que se asignarán las notificaciones
     let currentComplete: any = new Date();
     let d: any = currentComplete.getDate();
@@ -110,32 +116,27 @@ export class CreatePage {
     this.task.task_repetitions = this.datesSchedule.length;
 
     //invoca el guardado de las notificaciones.
-    this.saveNotifications(0);
+    this.saveNotifications();
   }
+
   /**
    * invoca la generacion de notficaciones locales o envía el guardar de la tarea en base de datos
    * @param dateScheduleIntex
    */
-  saveNotifications(dateScheduleIntex) {
+  saveNotifications() {
     if (this.datesSchedule.length === 0) {
       // si no se generan fechas para la trea programada no se guarda
       this.generalFunctions.showAlert('Atención', 'La fecha límite debe ser mayor para asignar recordatorios');
       return true;
     }
-    if (this.datesSchedule.hasOwnProperty(dateScheduleIntex)) {
-      // Schedule a single notification
-      // cambiar el id por numero de fecha actual.
-      let notificationId = this.task.task_notification_id + dateScheduleIntex;
-      this.generalFunctions.setScheduleLocalNotification(notificationId, 'Alcanza tu objetivo',
-        this.task.task_name, this.datesSchedule[dateScheduleIntex], this.task.task_tone);
-
-      // se auto invoca la creación de la sigiente notificacion
-      this.saveNotifications(dateScheduleIntex + 1);
+    this.task.task_limit_date = this.generalFunctions.task_limit_date;
+    if (this.navParams.data.task_id) {
+      this.editTask();
     } else {
-      // al finalizar de recorrer las notificaciones guarda la tarea en base de datos
       this.saveTask();
     }
   }
+
   /**
    * reproduce el sonido del tono seleccionado
    * @param tone
@@ -146,6 +147,7 @@ export class CreatePage {
     this.mediaFile = this.media.create(this.generalFunctions.localUri + "www/" + this.generalFunctions.arrayTones[tone]);
     this.mediaFile.play();
   }
+
   /**
    * para el sonido del tono
    */
@@ -155,6 +157,7 @@ export class CreatePage {
       this.mediaFile.stop();
     }
   }
+
   /**
    * guarda la tarea en base de datos.
    */
@@ -162,8 +165,52 @@ export class CreatePage {
     this.databaseProvider.newTask(this.task)
       .then(data => {
         if (data.insertId > 0) {
-          this.navCtrl.push(AdvancePage);
+          this.saveNewSchedule(data.insertId, 0);
         }
       });
+  }
+
+  editTask() {
+    this.databaseProvider.editTask(this.task)
+      .then(data => {
+        if (data.rowsAffected > 0) {
+          console.log(data);
+          this.clearNotifications(0);
+        }
+      });
+  }
+
+  saveNewSchedule(taskId, dateScheduleIntex) {
+    if (this.datesSchedule.hasOwnProperty(dateScheduleIntex)) {
+      this.databaseProvider.saveSchedule(taskId).then(dataSchedule => {
+        // Schedule a single notification
+        this.generalFunctions.setScheduleLocalNotification(dataSchedule.insertId, 'Alcanza tu objetivo',
+          this.task.task_name, this.datesSchedule[dateScheduleIntex], this.task.task_tone);
+        // se auto invoca la creación de la sigiente notificacion
+        this.saveNewSchedule(taskId, dateScheduleIntex + 1);
+      });
+    } else {
+      // al finalizar de recorrer las notificaciones se va a la pagina de avanzar
+      this.navCtrl.push(AdvancePage);
+    }
+  }
+
+  clearNotifications(indexNotification) {
+    if (this.schedules.hasOwnProperty(indexNotification)) {
+      this.generalFunctions.clearNotification(this.schedules[indexNotification].sche_id).then(data => {
+        console.log('borrando notificacion, ', data);
+        this.clearNotifications(indexNotification + 1);
+      });
+    } else {
+      this.generalFunctions.getNotifications();
+      this.saveNewSchedule(this.navParams.data.task_id, 0);
+    }
+  }
+  presentProfileModal() {
+    let profileModal = this.modalCtrl.create(CalendarComponent, { userId: 8675309 });
+    profileModal.onDidDismiss(data => {
+      console.log(data);
+    });
+    profileModal.present();
   }
 }

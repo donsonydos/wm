@@ -79,7 +79,7 @@ export class SentencesProvider {
       "id": 11,
       "sentence": "La visión sin la ejecución, solo es una alucinación.",
       "author": "Henry Ford",
-      "imageUrl": "https://s25.postimg.org/q2p1v3rfz/postal11.jpg"
+      "imageUrl": "https://s25.postimg.org/f33uji8qn/postal11.jpg"
     },
     {
       "id": 12,
@@ -91,109 +91,109 @@ export class SentencesProvider {
       "id": 13,
       "sentence": "No le pongas excusas a lo que no puedes terminar. Enfócate en todas aquellas razones por las que debas hacer que suceda.",
       "author": "Ralph Marston",
-      "imageUrl": "https://s25.postimg.org/lkyqqajfj/postal13.jpg"
+      "imageUrl": ""
     },
     {
       "id": 14,
       "sentence":"Vive como si fueras a morir mañana. Aprende como si fueras a vivir siempre.",
       "author":"Mahatma Gandhi",
-      "imageUrl": "https://s25.postimg.org/d2palykmn/postal14.jpg"
+      "imageUrl": ""
     },
     {
       "id": 15,
       "sentence":"El optimismo firme y paciente siempre rinde sus frutos.",
       "author":"Carlos Slim",
-      "imageUrl": "https://s25.postimg.org/so6m5wh5b/postal15.jpg"
+      "imageUrl": ""
     },
     {
       "id": 16,
       "sentence":"El fracaso derrota a los perdedores e inspira a los ganadores.",
       "author":"Robert Kiyosaki",
-      "imageUrl": "https://s25.postimg.org/usqz70lcv/postal16.jpg"
+      "imageUrl": ""
     },
     {
       "id": 17,
       "sentence": "No existe gran talento sin gran voluntad",
       "author": "Honoré de Balzac",
-      "imageUrl": "https://s25.postimg.org/so6m5xrfz/postal17.jpg"
+      "imageUrl": ""
     },
     {
       "id": 18,
       "sentence": "Cuando todo parezca ir en tu contra, recuerda que el avión despega contra el viento.",
       "author": "Henry Ford",
-      "imageUrl": "https://s25.postimg.org/usqz70dn3/postal18.jpg"
+      "imageUrl": ""
     },
     {
       "id": 19,
       "sentence": "Estoy convencido que la mitad de lo que separa a los emprendedores exitosos de los que han fracasado es la perseverancia.",
       "author": "Steve Jobs",
-      "imageUrl": "https://s25.postimg.org/zen3fdmbj/postal19.jpg"
+      "imageUrl": ""
     },
     {
       "id": 20,
       "sentence": "Los objetivos no sólo son necesarios para motivarnos. Son esenciales para mantenernos vivos.",
       "author": "Robert H. Schuller",
-      "imageUrl": "https://s25.postimg.org/aldjep8fz/postal20.jpg"
+      "imageUrl": ""
     },
     {
       "id": 21,
       "sentence": "El noventa por ciento del éxito se basa simplemente en insistir.",
       "author": "Woody Allen",
-      "imageUrl": "https://s25.postimg.org/4x78ns98f/postal21.jpg"
+      "imageUrl": ""
     },
     {
       "id": 22,
-      "sentence": "La verdadera fuerza no reside en los brazos sino en el espiritu",
+      "sentence": "Como una cobra, tu golpe debe sentirse antes que verse.",
       "author": "Bruce Lee",
-      "imageUrl": "https://s25.postimg.org/pts1027un/postal22.jpg"
+      "imageUrl": ""
     },
     {
       "id": 23,
-      "sentence":"La diferencia entre quien eres y quien quieres ser está en lo que haces",
+      "sentence":"La diferencia entre quien eres y quien quieres ser está en lo que haces.",
       "author":"Robert Kiyosaki",
-      "imageUrl": "https://s25.postimg.org/ufo58fo8v/postal23.jpg"
+      "imageUrl": ""
     },
     {
       "id": 24,
-      "sentence": "Una persona inteligente se repone pronto de un fracaso. Un mediocre jamás se recupera de un éxito",
+      "sentence": "Una persona inteligente se repone pronto de un fracaso. Un mediocre jamás se recupera de un éxito.",
       "author": "Séneca",
-      "imageUrl": "https://s25.postimg.org/qjatcesyn/postal24.jpg"
+      "imageUrl": ""
     },
     {
       "id": 25,
-      "sentence": "Odié cada minuto de entrenamiento, pero dije, \"No renuncies. Sufre ahora y vive el resto de tu vida como un campeón\"",
-      "author": "Muhammad Ali",
-      "imageUrl": "https://s25.postimg.org/al23mb1bj/postal25.jpg"
+      "sentence": "El tamaño de tu éxito será del tamaño de tu esfuerzo.",
+      "author": "Francisco de Miranda",
+      "imageUrl": ""
     },
     {
       "id": 26,
-      "sentence": "No permitas que nadie diga que eres incapaz de hacer algo, Si tienes un sueño, debes conservarlo. Si quieres algo, sal a buscarlo",
-      "author": "Will Smith",
-      "imageUrl": "https://s25.postimg.org/9irx3rasf/postal26.jpg"
+      "sentence": "No puedo darte la formula del éxito, pero si la del fracaso: Trata de complacer a todos.",
+      "author": "Anónimo",
+      "imageUrl": ""
     },
     {
       "id": 27,
-      "sentence": "Está bien celebrar el éxito, pero es más importante prestar atención a las lecciones del fracaso",
+      "sentence": "Está bien celebrar el éxito, pero es más importante prestar atención a las lecciones del fracaso.",
       "author": "Bill Gates",
-      "imageUrl": "https://s25.postimg.org/x9ralv39r/postal27.jpg"
+      "imageUrl": ""
     },
     {
       "id": 28,
-      "sentence": "La virtud, como el arte, se consagra constantemente a lo que es difícil de hacer, y cuanto más dura es la tarea más brillante es el éxito",
+      "sentence": "La virtud, como el arte, se consagra constantemente a lo que es difícil de hacer, y cuanto más dura es la tarea más brillante es el éxito.",
       "author": "Aristóteles",
-      "imageUrl": "https://s25.postimg.org/4wvsve23z/postal28.jpg"
+      "imageUrl": ""
     },
     {
       "id": 29,
-      "sentence": "No he fracasado, he encontrado 10.000 maneras en las que esto no funciona",
-      "author": "Thomas Edison",
-      "imageUrl": "https://s25.postimg.org/mzovmlij3/postal29.jpg"
+      "sentence": "Yo nunca habría tenido éxito en la vida si no me hubiera dedicado a las cosas más pequeñas con la misma atención y cuidado que le dediqué a las más grandes.",
+      "author": "Charles Dickens",
+      "imageUrl": ""
     },
     {
       "id": 30,
-      "sentence": "Debes realizar por lo menos un movimiento diario que te acerque un poco más a tu meta",
+      "sentence": "Debes realizar por lo menos un movimiento diario que te acerque un poco más a tu meta.",
       "author": "Bruce Lee",
-      "imageUrl": "https://s25.postimg.org/8ghql8f4f/postal30.jpg"
+      "imageUrl": ""
     }
   ];
 
@@ -205,7 +205,11 @@ export class SentencesProvider {
 
   selectRandom() {
     return this.getRandomInt(0, (this.sentences.length - 1)).then(numRandom => {
-      return this.sentences[Number(numRandom)];
+      if (this.sentences[Number(numRandom)].imageUrl !== '') {
+        return this.sentences[Number(numRandom)];
+      } else {
+        return this.selectRandom();
+      }
     });
 
   }
@@ -216,4 +220,5 @@ export class SentencesProvider {
       resolve(numRandom);
     });
   }
+
 }

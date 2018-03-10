@@ -23,6 +23,7 @@ export class GeneralFunctionsProvider {
   }
 
   localUri = this.file.applicationDirectory;
+  task_limit_date:any = '';
 
   arrayTones = [
     'assets/sounds/analog-watch-alarm_daniel-simion.mp3',
@@ -96,9 +97,29 @@ export class GeneralFunctionsProvider {
   }
 
   getNotifications() {
+    /*getTriggeredIds()
+    getScheduledIds()
+    get(notificationId)
+    getScheduled(notificationId)
+    getAllScheduled()
+    getTriggered(notificationId)
+    getAllTriggered()
+    clear(notificationId)*/
     this.localNotifications.getAll().then(data => {
       console.log('notificaciones', data);
     })
   }
+
+  getNotification(notificationId) {
+    this.localNotifications.get(notificationId).then(data => {
+      console.log('notificaciones, '+notificationId, data);
+    })
+  }
+
+  clearNotification(notificationId) {
+    return this.localNotifications.clear(notificationId)
+  }
+
+
 
 }

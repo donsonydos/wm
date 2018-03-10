@@ -25,6 +25,7 @@ import {Media} from "@ionic-native/media";
 import {GoalAccomplishPage} from "../pages/goal-accomplish/goal-accomplish";
 import { SentencesProvider } from '../providers/sentences/sentences';
 import {SocialSharing} from "@ionic-native/social-sharing";
+import {CalendarComponent} from "../components/calendar/calendar";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {SocialSharing} from "@ionic-native/social-sharing";
     AboutUsPage,
     AdvanceGoalPage,
     PublicityComponent,
-    GoalAccomplishPage
+    GoalAccomplishPage,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import {SocialSharing} from "@ionic-native/social-sharing";
     AboutUsPage,
     AdvanceGoalPage,
     PublicityComponent,
-    GoalAccomplishPage
+    GoalAccomplishPage,
+    CalendarComponent
   ],
   providers: [
     StatusBar,
